@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-^3)n9*z3ih5dicx(-!@v1-#6ve$g+gyoj-a%(b4&+b3uy2m#_z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*']  # 👈 Render-এর লাইভ লিংক সাপোর্ট করার জন্য
 
 
 # Application definition
@@ -44,7 +44,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # 👈 Render-এ স্ট্যাটিক ফাইল হ্যান্ডেল করার জন্য
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # 👈 Render-এ স্ট্যাটিক ফাইল ও CSS দেখানোর জন্য
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'sarkar_sanitary.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.DjangoTemplates',
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',  # 👈 সঠিক Backend নাম
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -125,7 +125,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# 👈 Render deployment error সমাধান করার জন্য এটি যোগ করা হলো
+# 👈 Render-এ collectstatic এরর দূর করার জন্য
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = '/media/'
