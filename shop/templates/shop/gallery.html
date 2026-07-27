@@ -1,0 +1,137 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- দুই পাশের খালি জায়গা কমানোর জন্য max-w-[95%] রাখা হলো -->
+<div class="max-w-[95%] mx-auto px-2 sm:px-4 lg:px-6 py-12">
+    
+    <!-- 🎯 GALLERY HEADER -->
+    <div class="text-center mb-16">
+        <h1 class="text-4xl font-black text-gray-900 tracking-tight mb-3">Sarkar Enterprise Gallery</h1>
+        <p class="text-lg text-gray-500 max-w-3xl mx-auto">Take a virtual tour of our mega showroom and production house. Explore our top-tier building materials, luxury fittings, and decor items.</p>
+        <div class="w-24 h-1 bg-red-600 mx-auto mt-4 rounded-full"></div>
+    </div>
+
+    <!-- 🖼️ IMAGES DISPLAY GRID - ছবির অনুপাত এবং উইডথ ফুল করার জন্য কোড আপডেট করা হয়েছে -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- 1. Astra Fittings (image_4.png) -->
+        <div class="group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-gray-50">
+                <img src="{% static 'shop/showroom_astra.png' %}" alt="Astra Bath Ware" 
+                     class="w-full h-full object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out">
+            </div>
+            <div class="p-6 bg-white border-t border-gray-50 flex-grow">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-widest">Premium Fitting</span>
+                <h3 class="text-2xl font-extrabold text-gray-800 mt-1">ASTRA Bath & Kitchen Ware</h3>
+                <p class="text-base text-gray-500 mt-2">Explore our premium ASTRA display featuring modern moving showers, elegant taps, wall mixers, and stylish bathroom steel shelves.</p>
+            </div>
+        </div>
+
+        <!-- 2. Premium Wooden Doors (image_5.png) -->
+        <div class="group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-gray-50">
+                <img src="{% static 'shop/showroom_doors_wood.png' %}" alt="Wooden Door Collection" 
+                     class="w-full h-full object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out">
+            </div>
+            <div class="p-6 bg-white border-t border-gray-50 flex-grow">
+                <span class="text-xs font-bold text-amber-600 uppercase tracking-widest">Elegant Wood</span>
+                <h3 class="text-2xl font-extrabold text-gray-800 mt-1">Solid Wooden Carved Doors</h3>
+                <p class="text-base text-gray-500 mt-2">Beautifully seasoned and deeply carved solid wooden doors with rich textures, perfect for a grand home entrance.</p>
+            </div>
+        </div>
+
+        <!-- 3. Plastic & Cosmo Doors (image_6.png) -->
+        <div class="group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-gray-50">
+                <img src="{% static 'shop/showroom_doors_plastic.png' %}" alt="Cosmo Door Stock" 
+                     class="w-full h-full object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out">
+            </div>
+            <div class="p-6 bg-white border-t border-gray-50 flex-grow">
+                <span class="text-xs font-bold text-red-600 uppercase tracking-widest">Durable Collection</span>
+                <h3 class="text-2xl font-extrabold text-gray-800 mt-1">Cosmo & uPVC Plastic Doors</h3>
+                <p class="text-base text-gray-500 mt-2">Massive collection of waterproof, durable plastic and printed uPVC doors from Cosmo and Mostafa brand, ready in stock.</p>
+            </div>
+        </div>
+
+        <!-- 4. Furniture Factory (image_7.png) -->
+        <div class="group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-gray-50">
+                <img src="{% static 'shop/factory_furniture.png' %}" alt="Furniture Manufacturing" 
+                     class="w-full h-full object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out">
+            </div>
+            <div class="p-6 bg-white border-t border-gray-50 flex-grow">
+                <span class="text-xs font-bold text-orange-600 uppercase tracking-widest">Our Production</span>
+                <h3 class="text-2xl font-extrabold text-gray-800 mt-1">Wooden Furniture Factory</h3>
+                <p class="text-base text-gray-500 mt-2">Inside our own automated factory and sawmill, where high-quality wood logs are seasoned and shaped into premium furniture by master craftsmen.</p>
+            </div>
+        </div>
+
+        <!-- 5. ROSA Sanitary (image_8.png) -->
+        <div class="group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-gray-50">
+                <img src="{% static 'shop/showroom_rosa_sanitary.png' %}" alt="ROSA Sanitary Display" 
+                     class="w-full h-full object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out">
+            </div>
+            <div class="p-6 bg-white border-t border-gray-50 flex-grow">
+                <span class="text-xs font-bold text-pink-600 uppercase tracking-widest">Luxury Sanitary</span>
+                <h3 class="text-2xl font-extrabold text-gray-800 mt-1">ROSA Sanitary & Luxury Basins</h3>
+                <p class="text-base text-gray-500 mt-2">Premium range of ROSA commodes, designer counter-top basins, and glass mirrors elegantly displayed for your modern bathroom.</p>
+            </div>
+        </div>
+
+        <!-- 6. Fancy & Decorative Lights (image_9.png) -->
+        <div class="group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-gray-50">
+                <img src="{% static 'shop/showroom_lights.png' %}" alt="Decorative Lights Display" 
+                     class="w-full h-full object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out">
+            </div>
+            <div class="p-6 bg-white border-t border-gray-50 flex-grow">
+                <span class="text-xs font-bold text-purple-600 uppercase tracking-widest">Luxury Lighting</span>
+                <h3 class="text-2xl font-extrabold text-gray-800 mt-1">Fancy Wall Lamps & Hanging Lights</h3>
+                <p class="text-base text-gray-500 mt-2">Brighten your interiors with our stunning colorful bracket wall lamps, modern crystal shades, and energy-efficient hanging ceiling lights.</p>
+            </div>
+        </div>
+
+        <!-- 7. Electronics & Cables (image_10.png) -->
+        <div class="group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-gray-50">
+                <img src="{% static 'shop/showroom_electronics.png' %}" alt="Electrical Stock" 
+                     class="w-full h-full object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out">
+            </div>
+            <div class="p-6 bg-white border-t border-gray-50 flex-grow">
+                <span class="text-xs font-bold text-indigo-600 uppercase tracking-widest">Electricals</span>
+                <h3 class="text-2xl font-extrabold text-gray-800 mt-1">Cables, Switches & Electrical Goods</h3>
+                <p class="text-base text-gray-500 mt-2">Huge inventory of certified copper electric cables, high-quality circuit breakers, ceiling fans, and premium modular switch boards.</p>
+            </div>
+        </div>
+
+        <!-- 8. ROSA Luxury Fittings (image_11.png) -->
+        <div class="group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-gray-50">
+                <img src="{% static 'shop/showroom_rosa_fittings.png' %}" alt="ROSA Bath Fittings" 
+                     class="w-full h-full object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out">
+            </div>
+            <div class="p-6 bg-white border-t border-gray-50 flex-grow">
+                <span class="text-xs font-bold text-teal-600 uppercase tracking-widest">Beyond Beauty</span>
+                <h3 class="text-2xl font-extrabold text-gray-800 mt-1">ROSA Luxury Bath Fittings</h3>
+                <p class="text-base text-gray-500 mt-2">Upgrade your washrooms with ROSA's premium long body taps, overhead square showers, towel rails, and durable chrome mixers.</p>
+            </div>
+        </div>
+
+        <!-- 9. Paints & Color Mixing Station (image_12.png) -->
+        <div class="group relative bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 flex flex-col w-full">
+            <div class="w-full aspect-[4/3] overflow-hidden bg-gray-50">
+                <img src="{% static 'shop/showroom_paints.png' %}" alt="Berger Paint Station" 
+                     class="w-full h-full object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out">
+            </div>
+            <div class="p-6 bg-white border-t border-gray-50 flex-grow">
+                <span class="text-xs font-bold text-emerald-600 uppercase tracking-widest">Wall Coating</span>
+                <h3 class="text-2xl font-extrabold text-gray-800 mt-1">Berger Computerized Color Station</h3>
+                <p class="text-base text-gray-500 mt-2">Authorized Berger color shop equipped with automated mixing machines for WeatherCoat, Robbialac, and premium Silk finishes.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

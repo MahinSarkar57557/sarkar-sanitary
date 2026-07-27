@@ -1,0 +1,160 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg-slate-50 min-h-screen flex flex-col font-sans antialiased text-slate-900">
+    
+    <div class="w-full max-w-[95%] mx-auto px-4 py-8 flex-grow">
+        
+        <div class="flex items-center gap-4 mb-8 border-b pb-5">
+            <span class="text-4xl">🛒</span>
+            <div>
+                <h1 class="text-3xl font-black uppercase tracking-wide">Your Shopping Cart</h1>
+                <p class="text-base text-slate-500 font-medium mt-1">Review your items, select shipping area and fill in details to confirm order.</p>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200/60 shadow-md p-6 overflow-hidden mb-8">
+            <h2 class="text-xl font-black text-slate-950 mb-5 flex items-center gap-2">
+                <span class="w-1.5 h-6 bg-red-600 rounded-full"></span> Selected Products
+            </h2>
+            
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 text-slate-500 text-sm font-bold uppercase tracking-wider border-b border-slate-100">
+                            <th class="p-4 pl-6">Product Image & Name</th>
+                            <th class="p-4">Brand</th>
+                            <th class="p-4 text-center">Quantity</th>
+                            <th class="p-4">Price</th>
+                            <th class="p-4">Total</th>
+                            <th class="p-4 text-center pr-6">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-lg font-medium text-slate-700">
+                        {% for item in cart_items %}
+                        <tr class="hover:bg-slate-50/50 transition">
+                            <td class="p-4 pl-6 flex items-center gap-4">
+                                {% if item.product.image %}
+                                    <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" class="w-16 h-16 object-cover rounded-xl border border-slate-200 shadow-sm">
+                                {% else %}
+                                    <div class="w-16 h-16 bg-slate-100 border border-slate-200 rounded-xl flex items-center justify-center text-slate-400 text-xs font-bold">No Pic</div>
+                                {% endif %}
+                                <span class="font-black text-slate-950 text-xl">{{ item.product.name }}</span>
+                            </td>
+                            <td class="p-4">
+                                <span class="bg-slate-100 text-slate-800 px-3 py-1 rounded-lg text-xs font-black uppercase tracking-wider">{{ item.product.brand }}</span>
+                            </td>
+                            <td class="p-4 text-center">
+                                <span class="bg-slate-50 border border-slate-200 px-5 py-2 rounded-xl font-black text-slate-950 font-mono text-xl inline-block">
+                                    {{ item.quantity }}
+                                </span>
+                            </td>
+                            <td class="p-4 text-slate-500 font-bold">৳{{ item.product.price }}</td>
+                            <td class="p-4 font-black text-slate-950 text-xl">৳{{ item.total_price }}</td>
+                            <td class="p-4 text-center pr-6 flex justify-center gap-4 items-center h-24">
+                                <a href="{% url 'remove_from_cart' item.product.id %}" class="text-amber-500 hover:text-amber-700 font-black text-base transition">
+                                    ➖ Decrease
+                                </a>
+                                <span class="text-slate-300">|</span>
+                                <a href="{% url 'delete_cart_item' item.product.id %}" class="text-red-500 hover:text-red-700 font-black text-base transition">
+                                    ❌ Remove
+                                </a>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="p-16 text-center text-slate-400 font-bold text-xl">
+                                Your cart is empty. <a href="{% url 'index' %}" class="text-red-500 underline ml-1">Shop Now</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 border-t border-slate-100 pt-5">
+                <a href="{% url 'index' %}" class="text-base font-black text-slate-600 hover:text-slate-950 flex items-center gap-2 transition">
+                    ← Continue Shopping
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200/60 shadow-lg p-8">
+            <h2 class="text-xl font-black text-slate-950 mb-6 flex items-center gap-2">
+                <span class="w-1.5 h-6 bg-emerald-600 rounded-full"></span> Delivery & Order Details
+            </h2>
+
+            <form action="{% url 'checkout_view' %}" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                {% csrf_token %}
+
+                <div class="lg:col-span-2 space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div>
+                            <label class="block text-slate-800 font-black mb-2 text-base">Full Name <span class="text-red-500">*</span></label>
+                            <input type="text" name="name" required placeholder="Enter your full name" 
+                                   class="w-full p-4 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-red-500 font-bold text-base">
+                        </div>
+                        <div>
+                            <label class="block text-slate-800 font-black mb-2 text-base">Phone Number <span class="text-red-500">*</span></label>
+                            <input type="text" name="phone" required placeholder="Enter active mobile number" 
+                                   class="w-full p-4 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-red-500 font-mono font-black text-base">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-slate-800 font-black mb-2 text-base">Delivery Location (Area) <span class="text-red-500">*</span></label>
+                        <select name="shipping_area" id="shipping_area" onchange="updateTotal()" required 
+                                class="w-full p-4 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-red-500 font-black text-base bg-white">
+                            <option value="60">Inside Comilla (৳60)</option>
+                            <option value="120">Outside Comilla (৳120)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-slate-800 font-black mb-2 text-base">Full Delivery Address <span class="text-red-500">*</span></label>
+                        <textarea name="location" rows="3" required placeholder="Apartment, Road, Area, City..." 
+                                  class="w-full p-4 border-2 border-slate-200 rounded-xl focus:outline-none focus:border-red-500 font-bold text-base"></textarea>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-1 bg-slate-50 rounded-2xl p-6 border border-slate-200/60 flex flex-col justify-between">
+                    <div class="space-y-4">
+                        <h3 class="text-base font-black text-slate-400 uppercase tracking-wider border-b pb-2">Order Summary</h3>
+                        
+                        <div class="flex justify-between text-base font-bold text-slate-600">
+                            <span>Cart Subtotal:</span>
+                            <span class="text-slate-950">৳<span id="subtotal_val">{{ subtotal }}</span></span>
+                        </div>
+                        <div class="flex justify-between text-base font-bold text-slate-600">
+                            <span>Delivery Charge:</span>
+                            <span class="text-emerald-600 font-black">৳<span id="delivery_val">60</span></span>
+                        </div>
+                        <div class="border-t border-slate-200 my-3 pt-3 flex justify-between items-center">
+                            <span class="text-lg font-black text-slate-950">Grand Total:</span>
+                            <span class="text-3xl font-black text-red-600">৳<span id="grand_total_val">0</span></span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-black py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 text-lg uppercase tracking-wider mt-6 flex items-center justify-between group">
+                        <span>Confirm Order</span>
+                        <i class="fa-solid fa-circle-check text-xl"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    function updateTotal() {
+        const subtotal = parseFloat("{{ subtotal }}") || 0;
+        const shippingCharge = parseFloat(document.getElementById('shipping_area').value) || 0;
+        
+        document.getElementById('delivery_val').innerText = shippingCharge;
+        document.getElementById('grand_total_val').innerText = (subtotal + shippingCharge).toFixed(2);
+    }
+    window.onload = updateTotal;
+</script>
+{% endblock %}

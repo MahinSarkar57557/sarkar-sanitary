@@ -1,0 +1,181 @@
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block title %}About Us - Sarkar Enterprise{% endblock %}
+
+{% block content %}
+<div class="bg-gradient-to-b from-gray-50 via-white to-gray-100 min-h-screen py-20 overflow-x-hidden">
+    
+    <div class="max-w-4xl mx-auto text-center mb-28 px-4">
+        <span class="text-blue-600 text-xs font-black uppercase tracking-widest bg-blue-50 px-4 py-2 rounded-full border border-blue-100 shadow-sm">
+            ⭐ Our Legacy & Milestones
+        </span>
+        <h1 class="text-4xl sm:text-6xl font-black text-gray-900 mt-6 tracking-tight leading-tight">
+            A Journey of <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Excellence & Trust</span>
+        </h1>
+        <p class="text-lg sm:text-xl text-gray-600 mt-4 max-w-2xl mx-auto leading-relaxed font-medium">
+            Sarkar Enterprise stands proud as a symbol of premium quality, long-term retail partnership, and relentless commitment to elite structural solutions.
+        </p>
+        <div class="w-28 h-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto mt-6 rounded-full shadow-sm"></div>
+    </div>
+
+    <div class="max-w-6xl mx-auto relative px-4 sm:px-6 lg:px-8 space-y-32">
+        
+        <div class="absolute left-1/2 transform -translate-x-1/2 top-4 bottom-4 w-1 bg-gradient-to-b from-blue-500 via-pink-500 via-teal-500 to-blue-400 hidden lg:block rounded-full opacity-60"></div>
+
+        <div class="relative flex flex-col lg:flex-row items-center justify-between group">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white bg-amber-500 shadow-md z-30 hidden lg:block"></div>
+            
+            <div class="w-full lg:w-[46%] flex justify-center lg:justify-end animate-on-scroll transform opacity-0 -translate-x-16 transition-all duration-700 ease-out">
+                <div class="bg-white p-5 rounded-3xl shadow-2xl border border-gray-100/80 hover:shadow-indigo-100 transition-all duration-300">
+                    <div class="w-full sm:w-80 h-[450px] overflow-hidden rounded-2xl bg-gray-50 flex items-center justify-center border border-gray-100 shadow-inner">
+                        <img src="{% static 'shop/award_2025.png' %}" alt="Berger Award 2025-2026" 
+                             class="max-h-full max-w-full p-4 object-contain transform hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-[46%] mt-8 lg:mt-0 text-left bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-gray-50 animate-on-scroll transform opacity-0 translate-x-16 transition-all duration-700 ease-out delay-500">
+                <span class="text-3xl font-black text-amber-500 tracking-wider block mb-2">🗓️ 2025 - 2026</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+                    Berger Club Supreme — Gold Member
+                </h2>
+                <span class="text-xs font-black text-indigo-600 uppercase tracking-widest mb-5 inline-block bg-indigo-50 px-3 py-1 rounded-md">
+                    Awarded To: M/S Sarkar Traders
+                </span>
+                <div class="text-base sm:text-lg text-gray-600 space-y-4 font-medium leading-relaxed">
+                    <p>
+                        Presented proudly by <strong class="text-gray-900">Berger Paints Bangladesh Limited (Comilla Sales Office)</strong>. This star-crested Gold Member award recognizes our outstanding corporate partnership, historic sales growth, and supreme distribution excellence within the market.
+                    </p>
+                    <p class="text-gray-500 text-sm border-l-4 border-amber-500 pl-4 italic bg-amber-50/40 py-2 pr-2 rounded-r-lg">
+                        Through unwavering regional consumer trust, we have successfully expanded premium surface coating solutions, setting new benchmarks for successive retail leadership.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative flex flex-col lg:flex-row items-center justify-between group">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white bg-teal-500 shadow-md z-30 hidden lg:block"></div>
+            
+            <div class="w-full lg:w-[46%] mt-8 lg:mt-0 order-2 lg:order-1 text-left bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-gray-50 animate-on-scroll transform opacity-0 -translate-x-16 transition-all duration-700 ease-out delay-500">
+                <span class="text-3xl font-black text-teal-600 tracking-wider block mb-2">🗓️ 2024 - 2025</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+                    Mostofah Door Company — Best Dealer Item
+                </h2>
+                <span class="text-xs font-black text-teal-600 uppercase tracking-widest mb-5 inline-block bg-teal-50 px-3 py-1 rounded-md">
+                    Awarded To: M/S Sarkar Sanitary
+                </span>
+                <div class="text-base sm:text-lg text-gray-600 space-y-4 font-medium leading-relaxed">
+                    <p>
+                        Awarded by <strong class="text-gray-900">Mostofah Plastic Door Company</strong>, this magnificent crystal and gold crest stands as direct proof of our heavy logistical integrity, immense distribution capacity, and highest sales throughput in premium uPVC waterproof doors.
+                    </p>
+                    <p class="text-gray-500 text-sm border-l-4 border-teal-500 pl-4 italic bg-teal-50/40 py-2 pr-2 rounded-r-lg">
+                        This token commemorates our relentless devotion toward stocking modern architectural configurations, secure builds, and unmatched aesthetics for durable home infrastructure.
+                    </p>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-[46%] flex justify-center lg:justify-start order-1 lg:order-2 animate-on-scroll transform opacity-0 translate-x-16 transition-all duration-700 ease-out">
+                <div class="bg-white p-5 rounded-3xl shadow-2xl border border-gray-100/80 hover:shadow-teal-100 transition-all duration-300">
+                    <div class="w-full sm:w-80 h-[450px] overflow-hidden rounded-2xl bg-gray-50 flex items-center justify-center border border-gray-100 shadow-inner">
+                        <img src="{% static 'shop/award_2024.png' %}" alt="Mostofah Door Award 2024-2025" 
+                             class="max-h-full max-w-full p-4 object-contain transform hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative flex flex-col lg:flex-row items-center justify-between group">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white bg-pink-500 shadow-md z-30 hidden lg:block"></div>
+            
+            <div class="w-full lg:w-[46%] flex justify-center lg:justify-end animate-on-scroll transform opacity-0 -translate-x-16 transition-all duration-700 ease-out">
+                <div class="bg-white p-5 rounded-3xl shadow-2xl border border-gray-100/80 hover:shadow-pink-100 transition-all duration-300">
+                    <div class="w-full sm:w-80 h-[450px] overflow-hidden rounded-2xl bg-gray-50 flex items-center justify-center border border-gray-100 shadow-inner">
+                        <img src="{% static 'shop/award_2023.png' %}" alt="ROSA Award 2023-2024" 
+                             class="max-h-full max-w-full p-4 object-contain transform hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-[46%] mt-8 lg:mt-0 text-left bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-gray-50 animate-on-scroll transform opacity-0 translate-x-16 transition-all duration-700 ease-out delay-500">
+                <span class="text-3xl font-black text-pink-600 tracking-wider block mb-2">🗓️ 2023 - 2024</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+                    ROSA Club Supreme — Best Sanitary Item
+                </h2>
+                <span class="text-xs font-black text-pink-600 uppercase tracking-widest mb-5 inline-block bg-pink-50 px-3 py-1 rounded-md">
+                    Awarded To: M/S Sarkar Sanitary
+                </span>
+                <div class="text-base sm:text-lg text-gray-600 space-y-4 font-medium leading-relaxed">
+                    <p>
+                        Achieved directly from <strong class="text-gray-900">ROSA (An Akij Ceramics Brand)</strong> for securing unwavering consumer reliability. This sleek trophy honors our state-of-the-art modern product displays and outstanding wholesale fulfillment performance.
+                    </p>
+                    <p class="text-gray-500 text-sm border-l-4 border-pink-500 pl-4 italic bg-pink-50/40 py-2 pr-2 rounded-r-lg">
+                        We remain focused on maintaining rich boutique collections of luxury commodes, premium basins, and smart sanitary fittings across our expansive operational zones.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="relative flex flex-col lg:flex-row items-center justify-between group">
+            <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 border-white bg-blue-600 shadow-md z-30 hidden lg:block"></div>
+            
+            <div class="w-full lg:w-[46%] mt-8 lg:mt-0 order-2 lg:order-1 text-left bg-white p-8 sm:p-10 rounded-3xl shadow-xl border border-gray-50 animate-on-scroll transform opacity-0 -translate-x-16 transition-all duration-700 ease-out delay-500">
+                <span class="text-3xl font-black text-blue-600 tracking-wider block mb-2">🗓️ 2022 - 2023</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">
+                    Berger Club Supreme — Gold Member
+                </h2>
+                <span class="text-xs font-black text-blue-600 uppercase tracking-widest mb-5 inline-block bg-blue-50 px-3 py-1 rounded-md">
+                    Awarded To: M/S Sarkar Hardware
+                </span>
+                <div class="text-base sm:text-lg text-gray-600 space-y-4 font-medium leading-relaxed">
+                    <p>
+                        The true foundation of our multi-year winning streak. This initial gold medallion from <strong class="text-gray-900">Berger Paints Bangladesh Limited</strong> highlights our strict market transparency, ethical trade standards, and robust introduction of elite coating technology regionally.
+                    </p>
+                    <p class="text-gray-500 text-sm border-l-4 border-blue-500 pl-4 italic bg-blue-50/40 py-2 pr-2 rounded-r-lg">
+                        A milestone achieved through sheer willpower and transparent distribution, opening up horizons for successive commercial expansion.
+                    </p>
+                </div>
+            </div>
+
+            <div class="w-full lg:w-[46%] flex justify-center lg:justify-start order-1 lg:order-2 animate-on-scroll transform opacity-0 translate-x-16 transition-all duration-700 ease-out">
+                <div class="bg-white p-5 rounded-3xl shadow-2xl border border-gray-100/80 hover:shadow-blue-100 transition-all duration-300">
+                    <div class="w-full sm:w-80 h-[450px] overflow-hidden rounded-2xl bg-gray-50 flex items-center justify-center border border-gray-100 shadow-inner">
+                        <img src="{% static 'shop/award_2022.png' %}" alt="Berger Award 2022-2023" 
+                             class="max-h-full max-w-full p-4 object-contain transform hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const observerOptions = {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0.15 
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.remove('opacity-0', '-translate-x-16', 'translate-x-16');
+                    entry.target.classList.add('opacity-100', 'translate-x-0');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        animatedElements.forEach(el => observer.observe(el));
+    });
+</script>
+
+<style>
+    .delay-500 {
+        transition-delay: 450ms !important; 
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Sarkar Sanitary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-50 font-sans antialiased">
+
+    <nav class="bg-red-600 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
+            <a href="{% url 'index' %}" class="text-white font-black text-xl">🏢 SARKAR SANITARY</a>
+            <a href="{% url 'cart_view' %}" class="bg-white text-red-600 font-bold px-4 py-2 rounded-xl text-sm">🛒 Back to Cart</a>
+        </div>
+    </nav>
+
+    <div class="max-w-md mx-auto px-4 py-16">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+            <h2 class="text-2xl font-black text-slate-900 mb-2">Delivery Information 📍</h2>
+            <p class="text-slate-500 text-sm mb-6">Please enter your billing details to confirm your order via WhatsApp.</p>
+            
+            <form action="{% url 'whatsapp_order' %}" method="POST" class="space-y-4">
+                {% csrf_csrf_token %}
+                {% csrf_token %}
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Your Full Name</label>
+                    <input type="text" name="name" required placeholder="e.g. Mahin Sarkar" 
+                           class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:border-red-500 transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Phone Number</label>
+                    <input type="text" name="phone" required placeholder="e.g. 017XXXXXXXX" 
+                           class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:border-red-500 transition">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1">Delivery Address</label>
+                    <textarea name="location" rows="3" required placeholder="House, Road, Area, City..." 
+                              class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:border-red-500 transition"></textarea>
+                </div>
+
+                <div class="bg-red-50 p-4 rounded-xl flex justify-between items-center my-6">
+                    <span class="text-sm font-bold text-red-800">Total Payable Amount:</span>
+                    <span class="text-xl font-black text-red-600">৳{{ total }}</span>
+                </div>
+
+                <button type="submit" 
+                        class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-md transition transform active:scale-95 duration-150 text-center">
+                    Confirm & Open WhatsApp 💬
+                </button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

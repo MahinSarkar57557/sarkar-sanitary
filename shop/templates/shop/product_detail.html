@@ -1,0 +1,150 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - Sarkar Sanitary</title>
+    <link rel="stylesheet" href="{% static 'shop/style.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        /* 🌐 বেস ফন্ট সাইজ সামান্য সামঞ্জস্য করা হলো */
+        html {
+            font-size: 16px;
+        }
+        @media (min-width: 768px) {
+            html {
+                font-size: 17px;
+            }
+        }
+
+        /* 🔢 কোয়ান্টিটি ইনপুটের ভেতরের ডিফল্ট অ্যারো লুকানোর জন্য */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 leading-relaxed min-h-screen flex flex-col">
+
+    <nav class="bg-white border-b border-gray-100 shadow-sm py-5 sticky top-0 z-50">
+        <div class="max-w-[92%] mx-auto px-4 flex items-center justify-between">
+            <a href="{% url 'index' %}" class="text-2xl md:text-3xl font-black text-gray-900 tracking-wider uppercase">
+                🏢 SARKAR SANITARY
+            </a>
+            <a href="{% url 'cart_view' %}" class="bg-red-50 text-red-600 font-bold text-base px-5 py-2.5 rounded-xl hover:bg-red-100 transition shadow-sm border border-red-200">
+                🛒 View Cart
+            </a>
+        </div>
+    </nav>
+
+    <main class="max-w-[85%] mx-auto px-4 py-10 flex-grow w-full">
+        
+        <a href="{% url 'index' %}" class="inline-flex items-center gap-1.5 text-base font-bold text-gray-500 hover:text-red-600 transition mb-6 group">
+            <span class="transform group-hover:-translate-x-1 transition-transform">←</span> Back to Showroom
+        </a>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 bg-white p-8 md:p-12 rounded-2xl shadow-md items-center border border-gray-100">
+            
+            <div class="bg-gray-50 p-6 rounded-xl border border-dashed border-gray-200 flex items-center justify-center min-h-[350px] md:min-h-[450px]">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="max-h-[430px] w-full object-contain rounded-lg transform hover:scale-102 transition duration-300">
+                {% else %}
+                    <div class="text-xl font-bold text-gray-400">
+                        📸 No Image Available
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="space-y-5">
+                <div>
+                    <span class="inline-block bg-red-50 text-red-600 font-bold text-xs tracking-wide px-3.5 py-1.5 rounded-full uppercase border border-red-100">
+                        BRAND: {{ product.brand }}
+                    </span>
+                </div>
+                
+                <h1 class="text-3xl md:text-4xl font-black text-gray-900 leading-tight tracking-tight">
+                    {{ product.name }}
+                </h1>
+                
+                <p class="text-3xl font-black text-red-600">
+                    ৳{{ product.price }}
+                </p>
+
+                <div class="text-sm">
+                    {% if product.stock > 5 %}
+                        <span class="bg-green-100 text-green-800 px-3.5 py-2 rounded-lg font-bold border border-green-200">
+                            ✔️ In Stock ({{ product.stock }} units available)
+                        </span>
+                    {% elif product.stock > 0 %}
+                        <span class="bg-yellow-100 text-yellow-800 px-3.5 py-2 rounded-lg font-bold border border-yellow-200">
+                            ⚠️ Low Stock (Only {{ product.stock }} left!)
+                        </span>
+                    {% else %}
+                        <span class="bg-red-100 text-red-800 px-3.5 py-2 rounded-lg font-bold border border-red-200">
+                            ❌ Out of Stock
+                        </span>
+                    {% endif %}
+                </div>
+
+                <hr class="border-gray-100 my-5">
+
+                <div class="space-y-1.5">
+                    <h3 class="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                        Product Summary
+                    </h3>
+                    <p class="text-base text-gray-600 leading-relaxed font-medium">
+                        {% if product.short_description %}
+                            {{ product.short_description }}
+                        {% else %}
+                            This is a premium quality item from {{ product.brand }} brand, crafted to meet your sanitary and home improvement needs.
+                        {% endif %}
+                    </p>
+                </div>
+
+                {% if product.stock > 0 %}
+                <form action="{% url 'add_to_cart' product.id %}" method="POST" class="pt-3 space-y-4">
+                    {% csrf_token %}
+                    
+                    <div class="flex flex-wrap items-center gap-4">
+                        <div class="flex items-center bg-gray-100 rounded-xl p-1 border border-gray-200 shadow-sm">
+                            <button type="button" class="w-10 h-10 text-xl font-black text-gray-500 hover:bg-white rounded-lg transition flex items-center justify-center active:scale-95" onclick="changeQty(-1)">-</button>
+                            <input type="number" name="quantity" id="product-qty" class="w-14 bg-transparent text-center text-lg font-black text-gray-900 outline-none" value="1" min="1" max="{{ product.stock }}">
+                            <button type="button" class="w-10 h-10 text-xl font-black text-gray-500 hover:bg-white rounded-lg transition flex items-center justify-center active:scale-95" onclick="changeQty(1)">+</button>
+                        </div>
+                        
+                        <button type="submit" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold text-lg px-6 py-3.5 rounded-xl transition duration-200 shadow-md text-center transform active:scale-[0.99] min-w-[180px]">
+                            Add to Cart 🛒
+                        </button>
+                    </div>
+                </form>
+                {% else %}
+                    <div class="pt-3">
+                        <button disabled class="w-full lg:w-auto bg-gray-200 text-gray-400 font-bold text-lg px-8 py-3.5 rounded-xl cursor-not-allowed border border-gray-300">
+                            Stock Out ❌
+                        </button>
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function changeQty(amount) {
+            const qtyInput = document.getElementById('product-qty');
+            let currentQty = parseInt(qtyInput.value) || 1;
+            currentQty += amount;
+            
+            const maxStock = parseInt(qtyInput.getAttribute('max')) || 999;
+            if (currentQty < 1) currentQty = 1;
+            if (currentQty > maxStock) currentQty = maxStock;
+            
+            qtyInput.value = currentQty;
+        }
+    </script>
+
+</body>
+</html>
