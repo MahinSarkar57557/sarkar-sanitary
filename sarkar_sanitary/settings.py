@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,24 +26,25 @@ SECRET_KEY = 'django-insecure-^3)n9*z3ih5dicx(-!@v1-#6ve$g+gyoj-a%(b4&+b3uy2m#_z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',  # 👈 জ্যাঙ্গো অ্যাডমিন প্যানেল সুন্দর করার জন্য এটি সবার উপরে রাখা হয়েছে
+    'jazzmin',  # 👈 জ্যাঙ্গো অ্যাডমিন প্যানেল সুন্দর করার জন্য এটি সবার উপরে রাখা হয়েছে
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'shop'
+    'shop',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # 👈 Render-এ স্ট্যাটিক ফাইল হ্যান্ডেল করার জন্য
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,8 +57,8 @@ ROOT_URLCONF = 'sarkar_sanitary.urls'
 
 TEMPLATES = [
     {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [ BASE_DIR / 'templates'],
+        'BACKEND': 'django.template.backends.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -123,12 +125,15 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
+# 👈 Render deployment error সমাধান করার জন্য এটি যোগ করা হলো
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # ==============================================================================
-# 🎨 JAZZMIN SETTINGS (অ্যাডমিন প্যানেল প্রিমিয়াম ও সুন্দর করার মেইন থিম কোড)
+# 🎨 JAZZMIN SETTINGS (অ্যাডমিন প্যানেল প্রিমিয়াম ও সুন্দর করার মেইন থিম কোড)
 # ==============================================================================
 
 JAZZMIN_SETTINGS = {
